@@ -10,6 +10,7 @@ services:
       - "5432:5432"
     volumes:
       - desafio_db_data:/var/lib/postgresql/data
+      - ./db-config:/docker-entrypoint-initdb.d
 
 volumes:
   desafio_db_data:
