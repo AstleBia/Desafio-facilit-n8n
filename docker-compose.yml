@@ -3,8 +3,8 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: userDesafio
-      POSTGRES_PASSWORD: pass123word
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: desafio
     ports:
       - "5432:5432"
