@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: userDesafio
+      POSTGRES_PASSWORD: pass123word
+      POSTGRES_DB: desafio
+    ports:
+      - "5432:5432"
+    volumes:
+      - desafio_db_data:/var/lib/postgresql/data
+
+volumes:
+  desafio_db_data:
