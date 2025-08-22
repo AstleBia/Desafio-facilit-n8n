@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS agenda_marketing (
     status status NOT NULL
 )
 
-CREATE TABLE IF NOT EXISTS agenda_rh (
+CREATE TABLE IF NOT EXISTS agenda_ia (
     id SERIAL PRIMARY KEY,
     data_inicio DATE NOT NULL,
     data_fim DATE NOT NULL,
