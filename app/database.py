@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-database_url = f"postgresql+psycopg://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@localhost:5432/desafio"
+DB_HOST = os.getenv("DATABASE_HOST", "localhost")
+database_url = f"postgresql+psycopg://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{DB_HOST}:5432/desafio"
 engine = create_engine(database_url)
 
 def get_session():
