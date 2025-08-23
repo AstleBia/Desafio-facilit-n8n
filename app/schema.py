@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from datetime import date
-from models import Status
+from app.models import Status
 
 class EventoRhCreate(BaseModel):
     data_inicio:date
