@@ -1,8 +1,8 @@
 CREATE TYPE status as ENUM (
-    "Não iniciado",
-    "Em andamento",
-    "Concluído"
-)
+    'nao_iniciado',
+    'em_andamento',
+    'concluido'
+);
 
 CREATE TABLE IF NOT EXISTS agenda_rh (
     id SERIAL PRIMARY KEY,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS agenda_rh (
     descricao TEXT NOT NULL,
     alcance INTEGER NOT NULL,
     status status NOT NULL
-)
+);
 
 CREATE TABLE IF NOT EXISTS agenda_marketing (
     id SERIAL PRIMARY KEY,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS agenda_marketing (
     evento VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL,
     status status NOT NULL
-)
+);
 
 CREATE TABLE IF NOT EXISTS agenda_ia (
     id SERIAL PRIMARY KEY,
@@ -31,4 +31,4 @@ CREATE TABLE IF NOT EXISTS agenda_ia (
     descricao TEXT NOT NULL,
     engajamento INTEGER NOT NULL,
     status status NOT NULL
-)
+);
