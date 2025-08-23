@@ -20,7 +20,7 @@ def read_evento(evento_id:int, session:SessionDep) -> EventoRh:
 
 @router.post("/eventos-rh", response_model=EventoRh)
 def create_evento(evento:EventoRhCreate, session:SessionDep) -> EventoRh:
-    new_evento = EventoRh(data_inicio = evento.data_inicio, data_fim = evento.data_fim, evento = evento.evento, descricao = evento.descricao, alcance = evento.alcance, status = evento.status)
+    new_evento = EventoRh(data_inicio = evento.data_inicio, data_fim = evento.data_fim, evento = evento.evento, descricao = evento.descricao, alcance = evento.alcance, status = evento.status.value)
     session.add(new_evento)
     session.commit()
     session.refresh(new_evento)
@@ -36,7 +36,7 @@ def update_evento(evento_id:int, evento_updated: EventoRhCreate, session:Session
     evento.evento = evento_updated.evento
     evento.descricao = evento_updated.descricao
     evento.alcance = evento_updated.alcance
-    evento.status = evento_updated.status
+    evento.status = evento_updated.status.value
     session.add(evento)
     session.commit()
     session.refresh(evento)

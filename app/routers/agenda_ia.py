@@ -20,7 +20,7 @@ def read_evento(evento_id:int, session:SessionDep) -> EventoIA:
 
 @router.post("/eventos-ia", response_model=EventoIA)
 def create_evento(evento:EventoIACreate, session:SessionDep) -> EventoIA:
-    new_evento = EventoIA(data_inicio = evento.data_inicio, data_fim = evento.data_fim, evento = evento.evento, descricao = evento.descricao, engajamento = evento.engajamento, status = evento.status)
+    new_evento = EventoIA(data_inicio = evento.data_inicio, data_fim = evento.data_fim, evento = evento.evento, descricao = evento.descricao, engajamento = evento.engajamento, status = evento.status.value)
     session.add(new_evento)
     session.commit()
     session.refresh(new_evento)
@@ -36,7 +36,7 @@ def update_evento(evento_id:int, evento_updated: EventoIACreate, session:Session
     evento.evento = evento_updated.evento
     evento.descricao = evento_updated.descricao
     evento.engajamento = evento_updated.engajamento
-    evento.status = evento_updated.status
+    evento.status = evento_updated.status.value
     session.add(evento)
     session.commit()
     session.refresh(evento)

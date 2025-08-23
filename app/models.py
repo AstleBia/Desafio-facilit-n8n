@@ -4,9 +4,9 @@ import enum
 
 
 class Status (str, enum.Enum):
-    NaoIniciado = "nao_iniciado"
-    EmAndamento = "em_andamento"
-    Concluido = "concluido"
+    nao_iniciado = "nao_iniciado"
+    em_andamento = "em_andamento"
+    concluido = "concluido"
 
 class EventoRh(SQLModel, table=True):
     __tablename__ = "agenda_rh"
