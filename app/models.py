@@ -8,7 +8,7 @@ class Status (str, enum.Enum):
     EmAndamento = "Em andamento"
     Concluido = "Concluído"
 
-class AgendaRh(SQLModel, table=True):
+class EventoRh(SQLModel, table=True):
     id:int = Field(primary_key=True)
     data_inicio:date
     data_fim:date
@@ -17,7 +17,7 @@ class AgendaRh(SQLModel, table=True):
     alcance:int
     status:Status = Field(sa_column=Column(Enum(Status, name="status", create_type = False)))
 
-class AgendaMarketing(SQLModel, table = True):
+class EventoMarketing(SQLModel, table = True):
     id: int = Field(primary_key=True)
     data_inicio: date
     data_fim: date
@@ -25,7 +25,7 @@ class AgendaMarketing(SQLModel, table = True):
     descricao: str
     status: Status = Field(sa_column=Column(Enum(Status, name="status", create_type=False)))
 
-class AgendaIA(SQLModel, table = True):
+class EventoIA(SQLModel, table = True):
     id:int = Field(primary_key=True)
     data_inicio:date
     data_fim:date
