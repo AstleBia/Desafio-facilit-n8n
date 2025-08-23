@@ -9,6 +9,7 @@ class Status (str, enum.Enum):
     Concluido = "Concluído"
 
 class EventoRh(SQLModel, table=True):
+    __tablename__ = "agenda_rh"
     id:int = Field(primary_key=True)
     data_inicio:date
     data_fim:date
@@ -18,6 +19,7 @@ class EventoRh(SQLModel, table=True):
     status:Status = Field(sa_column=Column(Enum(Status, name="status", create_type = False)))
 
 class EventoMarketing(SQLModel, table = True):
+    __tablename__ = "agenda_marketing"
     id: int = Field(primary_key=True)
     data_inicio: date
     data_fim: date
@@ -26,6 +28,7 @@ class EventoMarketing(SQLModel, table = True):
     status: Status = Field(sa_column=Column(Enum(Status, name="status", create_type=False)))
 
 class EventoIA(SQLModel, table = True):
+    __tablename__ = "agenda_ia"
     id:int = Field(primary_key=True)
     data_inicio:date
     data_fim:date

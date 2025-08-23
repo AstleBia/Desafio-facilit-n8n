@@ -11,7 +11,7 @@ def read_eventos(session:SessionDep) -> list[EventoRh]:
     eventos  = session.exec(select(EventoRh)).all()
     return eventos
 
-@router.get("/eventos-rh/{evento_id}", reponse_model = EventoRh)
+@router.get("/eventos-rh/{evento_id}", response_model = EventoRh)
 def read_evento(evento_id:int, session:SessionDep) -> EventoRh:
     evento = session.get(EventoRh, evento_id)
     if not evento:
