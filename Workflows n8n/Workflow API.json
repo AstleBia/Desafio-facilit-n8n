@@ -1,0 +1,480 @@
+{
+  "name": "Workflow API",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "048c1c86-1c81-49cd-8b78-86a03d1413e1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1OjisMsyH_xSJPmFq43mbC-_IX-w02VjAiUkea6-ovcw/edit",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "RECURSOS HUMANOS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OjisMsyH_xSJPmFq43mbC-_IX-w02VjAiUkea6-ovcw/edit#gid=0"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "detectAutomatically"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a332fa86-9916-4283-9ada-a07a35d480f5",
+      "name": "Agenda RH",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hcCELeNuQKRr0EYr",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1UNROt8uGtCsr1TIsSJ8hC1ZVDQ_4_pXnVzg4mlLPasA/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "MKT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UNROt8uGtCsr1TIsSJ8hC1ZVDQ_4_pXnVzg4mlLPasA/edit#gid=0"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "detectAutomatically"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        176
+      ],
+      "id": "95abd7f7-de74-4238-bbd0-048f388110cf",
+      "name": "Agenda Marketing",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hcCELeNuQKRr0EYr",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1KeEF47VXCXO-eZpxhFG8Ye3gNRG3qwUSjES2kZ-_Xeo/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Agenda IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KeEF47VXCXO-eZpxhFG8Ye3gNRG3qwUSjES2kZ-_Xeo/edit#gid=0"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "detectAutomatically"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        -176
+      ],
+      "id": "d4de9963-8ec3-45b1-ad32-dc5d865aef63",
+      "name": "Agenda IA",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hcCELeNuQKRr0EYr",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b875b8b9-4982-425f-810c-4c1da5d8c0f4",
+              "leftValue": "={{ $json.Evento }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ca750fa2-6eb1-4642-9ea3-4f7e65e1eb65",
+              "leftValue": "={{ $json['Descrição'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        176
+      ],
+      "id": "5dd39391-8480-430a-bd25-b48292972bf4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b875b8b9-4982-425f-810c-4c1da5d8c0f4",
+              "leftValue": "={{ $json.Evento }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ca750fa2-6eb1-4642-9ea3-4f7e65e1eb65",
+              "leftValue": "={{ $json['Descrição'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "7ab3c736-3db8-4ace-bbd2-fb675aae9cbe",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b875b8b9-4982-425f-810c-4c1da5d8c0f4",
+              "leftValue": "={{ $json.Evento }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ca750fa2-6eb1-4642-9ea3-4f7e65e1eb65",
+              "leftValue": "={{ $json['Descrição'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        -176
+      ],
+      "id": "484c84f0-4c42-473c-9cba-e21556830678",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/eventos-marketing",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_anual",
+              "value": "={{ $json['Data/Anual'] }}"
+            },
+            {
+              "name": "evento",
+              "value": "={{ $json.Evento }}"
+            },
+            {
+              "name": "descricao",
+              "value": "={{ $json['Descrição'] }}"
+            },
+            {
+              "name": "status",
+              "value": "={{ $json.STATUS }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        192
+      ],
+      "id": "1d6e82c4-56af-4d0a-a78f-4062228b0895",
+      "name": "HTTP Request Marketing"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/eventos-rh",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_anual",
+              "value": "={{ $json['Data/Anual'] }}"
+            },
+            {
+              "name": "evento",
+              "value": "={{ $json.Evento }}"
+            },
+            {
+              "name": "descricao",
+              "value": "={{ $json['Descrição'] }}"
+            },
+            {
+              "name": "alcance",
+              "value": "={{ $json.ALCANCE }}"
+            },
+            {
+              "name": "status",
+              "value": "={{ $json.STATUS }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        16
+      ],
+      "id": "888c7e7d-9273-479c-89fd-5b60a319b839",
+      "name": "HTTP Request RH"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/eventos-ia",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_anual",
+              "value": "={{ $json['Data/Anual'] }}"
+            },
+            {
+              "name": "evento",
+              "value": "={{ $json.Evento }}"
+            },
+            {
+              "name": "descricao",
+              "value": "={{ $json['Descrição'] }}"
+            },
+            {
+              "name": "engajamento",
+              "value": "={{ $json.Engajamento }}"
+            },
+            {
+              "name": "status",
+              "value": "={{ $json.STATUS }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        -160
+      ],
+      "id": "b55c5006-87d0-4c8c-9969-f377b6f9ed94",
+      "name": "HTTP Request IA"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Agenda RH",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Agenda Marketing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Agenda IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agenda RH": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agenda Marketing": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agenda IA": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request RH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request Marketing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "eff4aaac-ddd3-466f-a2b2-82c272da1a51",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4abaf26746e6256b07f35f88460d177b9dcbe35b58194888b57c9858ba4cdbf3"
+  },
+  "id": "Pq1WOmycEl0oQBCL",
+  "tags": []
+}
