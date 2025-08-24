@@ -20,7 +20,7 @@ def read_evento(evento_id:int, session:SessionDep) -> EventoMarketing:
 
 @router.post("/eventos-marketing", response_model=EventoMarketing)
 def create_evento(evento:EventoMarketingCreate, session:SessionDep) -> EventoMarketing:
-    new_evento = EventoMarketing(data_inicio = evento.data_inicio, data_fim = evento.data_fim, evento = evento.evento, descricao = evento.descricao, status = evento.status.value)
+    new_evento = EventoMarketing(data_anual = evento.data_anual, evento = evento.evento, descricao = evento.descricao, status = evento)
     session.add(new_evento)
     session.commit()
     session.refresh(new_evento)
@@ -31,11 +31,10 @@ def update_evento(evento_id:int, evento_updated: EventoMarketingCreate, session:
     evento = session.get(EventoMarketing, evento_id)
     if not evento:
         raise HTTPException(status_code=404, detail="Evento não encontrado")
-    evento.data_inicio = evento_updated.data_inicio
-    evento.data_fim = evento_updated.data_fim
+    evento.data_anual = evento_updated.data_anual
     evento.evento = evento_updated.evento
     evento.descricao = evento_updated.descricao
-    evento.status.value = evento_updated.status
+    evento.status = evento_updated.status
     session.add(evento)
     session.commit()
     session.refresh(evento)

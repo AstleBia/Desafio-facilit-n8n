@@ -1,26 +1,21 @@
 from pydantic import BaseModel
-from datetime import date
-from app.models import Status
 
 class EventoRhCreate(BaseModel):
-    data_inicio:date
-    data_fim:date
+    data_anual:str
     evento:str
     descricao:str
     alcance:int
-    status:Status
+    status:str
 
 class EventoMarketingCreate(BaseModel):
-    data_inicio:date
-    data_fim:date
+    data_anual:str
     evento:str
     descricao:str
-    status:Status
+    status:str
 
 class EventoIACreate(BaseModel):
-    data_inicio:date
-    data_fim:date
+    data_anual:str
     evento:str
     descricao:str
     engajamento:int
-    status:Status
+    status:str
