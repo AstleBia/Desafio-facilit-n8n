@@ -20,7 +20,7 @@ def read_evento(evento_id:int, session:SessionDep) -> EventoMarketing:
 
 @router.post("/eventos-marketing", response_model=EventoMarketing)
 def create_evento(evento:EventoMarketingCreate, session:SessionDep) -> EventoMarketing:
-    new_evento = EventoMarketing(data_anual = evento.data_anual, evento = evento.evento, descricao = evento.descricao, status = evento)
+    new_evento = EventoMarketing(data_anual = evento.data_anual, evento = evento.evento, descricao = evento.descricao, status = evento.status)
     session.add(new_evento)
     session.commit()
     session.refresh(new_evento)
