@@ -22,8 +22,8 @@ A solução foi projetada para ser **modular e escalável**, utilizando **Docker
 
 ### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
-cd seu-repo
+git clone https://github.com/AstleBia/Desafio-facilit-n8n.git
+cd Desafio-facilit-n8n
 ```
 
 ### 2. Subir os Contêineres
