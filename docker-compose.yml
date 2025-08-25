@@ -36,6 +36,20 @@ services:
     depends_on:
       - api
 
+  n8n_consulta:
+    image: n8nio/n8n:latest
+    container_name: n8n_consulta
+    restart: always
+    ports:
+      - "5679:5678"
+    environment:
+      WEBHOOK_URL: http://localhost:5679/
+    volumes:
+      - n8n_consulta_data:/home/node/.n8
+    depends_on:
+      - api
+
 volumes:
   desafio_db_data:
   n8n_api_data:
+  n8n_consulta_data:
