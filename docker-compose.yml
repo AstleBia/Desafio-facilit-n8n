@@ -45,7 +45,7 @@ services:
     environment:
       WEBHOOK_URL: http://localhost:5679/
     volumes:
-      - n8n_consulta_data:/home/node/.n8
+      - n8n_consulta_data:/home/node/.n8n
     depends_on:
       - api
 
