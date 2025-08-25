@@ -10,7 +10,7 @@ O sistema permite que o usuário faça perguntas em linguagem natural via um **w
 ## Arquitetura
 A solução foi projetada para ser **modular e escalável**, utilizando **Docker** para orquestrar os serviços:
 
-- **PostgreSQL (DB):** Contêiner para armazenar os dados migrados das planilhas.  
+- **PostgreSQL (DB):** Container para armazenar os dados migrados das planilhas.  
 - **API (FastAPI):** Backend em Python para expor operações de CRUD no banco.  
 - **n8n (Workflows):**
   - **ETL Workflow:** Lê dados de planilhas no Google Sheets e popula o banco via API.  
@@ -25,14 +25,24 @@ A solução foi projetada para ser **modular e escalável**, utilizando **Docker
 git clone https://github.com/AstleBia/Desafio-facilit-n8n.git
 cd Desafio-facilit-n8n
 ```
+### 2. Configurar variáveis de ambiente
+Crie um arquivo chamado .env na raiz do projeto. Adicione o seguinte conteúdo a ele, substituindo pelos valores
+desejado:
+```
+POSTGRES_USER=seu_usuario
+POSTGRES_PASSWORD=sua_senha
+```
 
-### 2. Subir os Contêineres
+
+### 3. Subir os Containers
 É necessário ter **Docker** e **Docker Compose** instalados.
 ```bash
 docker-compose up -d --build
 ```
 
-### 3. Configurar o n8n
+### 4. Configurar o n8n
+- Acessar o serviço n8n ETL em http://localhost:5678/
+- Acessar o serviço n8n de consulta em http://localhost:5679/
 - Importe o workflow `workflow api.json` (responsável pela migração dos dados).  
 - Importe o workflow `workflow consulta.json` (responsável pela consulta com IA).  
 
