@@ -51,7 +51,7 @@ docker-compose up -d --build
 
 ---
 
-## 📝 Relatório Técnico
+## Relatório Técnico
 O relatório completo com **arquitetura, decisões técnicas e dificuldades enfrentadas** está disponível em [`relatorio.md`](./relatorio.md).
 
 ---
