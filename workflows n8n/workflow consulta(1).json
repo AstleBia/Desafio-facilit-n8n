@@ -1,0 +1,174 @@
+{
+  "name": "workflow consulta",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "78f503a2-e9a1-4387-a159-d0d9890ee5f9",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "571f28f6-b070-44bb-b094-d34d90fcd6aa",
+      "name": "Webhook",
+      "webhookId": "78f503a2-e9a1-4387-a159-d0d9890ee5f9"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Você é um assistente especializado em consultar eventos corporativos.\n\nVocê tem 3 ferramentas disponíveis:\n- consultar_eventos_rh: Para eventos de RH, treinamentos, desenvolvimento\n- consultar_eventos_marketing: Para eventos de marketing, campanhas, promoções  \n- consultar_eventos_ia: Para eventos de IA, tecnologia, automação\n\nCOMO RESPONDER:\n\n1. PERGUNTAS ESPECÍFICAS POR CATEGORIA:\n   - \"eventos de RH\" → use apenas consultar_eventos_rh\n   - \"campanhas de marketing\" → use apenas consultar_eventos_marketing\n   - \"eventos de IA\" → use apenas consultar_eventos_ia\n\n2. PERGUNTAS SOBRE UM EVENTO ESPECÍFICO OU GENÉRICAS:\n   Para estes casos, procure em todas as categorias até encontrar.\n\nREGRAS DE FORMATAÇÃO:\n- Use linguagem natural e direta\n- NÃO use aspas ou barras invertidas nos nomes dos eventos\n- NÃO use quebras de linha especiais ou códigos como \\n\n- Seja conciso e objetivo\n- Use frases simples e claras\n- NÃO adicione ofertas de ajuda desnecessárias no final\n\nEXEMPLOS DE RESPOSTAS CORRETAS:\n- \"O evento Facilit Comunica acontece de 10/09/2025 a 11/09/2025.\"\n- \"O Workshop de Liderança é um evento de RH que acontece em março.\"\n- \"Este evento está com status ativo.\"\n\nPergunta: {{ $json.body.pergunta }}\n\nResponda de forma direta e natural, sem formatação especial.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        352,
+        0
+      ],
+      "id": "2fa3ae50-1ee6-42ab-a9b7-818a52dbf3ee",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        224
+      ],
+      "id": "af0bc35d-f6a3-4104-8039-f79a15c94aba",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "21bNmSevQv8waFfS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Consultar eventos do rh.",
+        "url": "http://api:8000/eventos-rh",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        352,
+        224
+      ],
+      "id": "138fe81f-3f71-4c2c-8693-77f221c9d927",
+      "name": "consultar_eventos_rh"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Consulta eventos de marketing",
+        "url": "http://api:8000/eventos-marketing",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        224
+      ],
+      "id": "e205dda7-40fd-46ea-9a4c-c5fe54f64721",
+      "name": "consultar_eventos_marketing"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Consulta eventos de Ia",
+        "url": "http://api:8000/eventos-ia",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        608,
+        224
+      ],
+      "id": "590e6bf6-acc2-4bd8-9d75-1d52d63e088f",
+      "name": "consultar_eventos_ia"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_eventos_rh": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_eventos_marketing": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_eventos_ia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "84044cc3-9c09-475d-95dc-73c4cb67bbfc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a9a41feeea92fb0bcb07a84173b0416a1b7b6bc5dc6a0602717c314c1d5cb8ae"
+  },
+  "id": "JpYyrtGSR7PAUbL5",
+  "tags": []
+}
