@@ -11,18 +11,18 @@ um banco de dados populado com informações de planilhas.
 ## **2. Arquitetura da Solução**
 
 A arquitetura do sistema foi projetada para ser modular e escalável,
-utilizando contêineres Docker para orquestrar os diferentes serviços. A
+utilizando containers Docker para orquestrar os diferentes serviços. A
 solução é composta por:
 
--   **Banco de Dados PostgreSQL:** Um contêiner Docker rodando uma
+-   **Banco de Dados PostgreSQL:** Um container Docker rodando uma
     instância do PostgreSQL para armazenar os dados dos eventos.
 
 -   **API (Backend):** Uma API desenvolvida em Python com o framework
     FastAPI, que serve como uma camada de acesso para o banco de dados,
     executando operações de CRUD.
-    Esta API também roda em seu próprio contêiner Docker.
+    Esta API também roda em seu próprio container Docker.
 
--   **n8n (Workflows):** Dois contêineres Docker, cada um rodando uma
+-   **n8n (Workflows):** Dois containers Docker, cada um rodando uma
     instância do n8n para separar as responsabilidades:
 
     1.  **Workflow de ETL:** Responsável pela migração de dados das
@@ -43,7 +43,7 @@ A base do projeto foi a criação da infraestrutura para armazenamento e
 acesso aos dados.
 
 -   **Banco de Dados:** Foi configurado um serviço PostgreSQL em um
-    contêiner Docker. No momento da inicialização, um script (db-config.sql) é executado para criar as três tabelas necessárias:
+    container Docker. No momento da inicialização, um script (db-config.sql) é executado para criar as três tabelas necessárias:
     agenda_rh, agenda_marketing e agenda_ia, conforme especificado nas
     planilhas.
 
@@ -138,7 +138,7 @@ Siga os passos abaixo para executar a solução completa localmente.\
 
 3.  Iniciar os Serviços:\
     Execute o comando abaixo na raiz do projeto para construir as
-    imagens e iniciar todos os contêineres (API, Banco de Dados e os
+    imagens e iniciar todos os containers (API, Banco de Dados e os
     dois n8n).\
     `
     docker-compose up --build
